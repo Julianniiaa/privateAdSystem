@@ -1,6 +1,6 @@
 //package com.example.privateadsystem.config;
 //
-//import com.example.privateadsystem.service.UserService;
+//import com.example.privateadsystem.service.impl.UserServiceImpl;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;
@@ -13,7 +13,7 @@
 //@EnableWebSecurity
 //public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //    @Autowired
-//    UserService userService;
+//    UserServiceImpl userService;
 //
 //    @Bean
 //    public BCryptPasswordEncoder getPasswordEncoder() {

@@ -1,18 +1,13 @@
 package com.example.privateadsystem.service;
 
 import com.example.privateadsystem.model.Category;
-import com.example.privateadsystem.repository.CategoryRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import com.example.privateadsystem.web.dto.CategoryDto;
 
 import java.util.List;
 
-@Service
-public class CategoryService {
-    @Autowired
-    private CategoryRepository categoryRepository;
-
-    public List<Category> findAllCategories() {
-        return categoryRepository.findAll();
-    }
+public interface CategoryService {
+    Category saveCategory(Category category);
+    List<Category> findAllCategories();
+    Category updateCategory(long id, Category category);
+    void deleteCategory(long id);
 }

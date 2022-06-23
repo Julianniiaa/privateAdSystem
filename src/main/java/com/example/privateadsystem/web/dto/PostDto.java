@@ -2,7 +2,9 @@ package com.example.privateadsystem.web.dto;
 
 import com.example.privateadsystem.model.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -13,7 +15,9 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class PostDto {
 
     private Long idPost;
@@ -27,9 +31,7 @@ public class PostDto {
     private String title;
     private String description;
     private double price;
-    @DateTimeFormat(pattern = "dd.mm.yyyy HH:mm")
-    private DateFormatSymbols publicationDate;
+    private String publicationDate;
     private boolean statusSold;
     private boolean statusVip;
-
 }

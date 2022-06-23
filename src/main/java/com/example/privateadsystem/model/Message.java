@@ -24,7 +24,12 @@ public class Message {
     @JoinColumn(name = "id_chat")
     private Chat chat;
 
+    @Column(name = "text")
     private String text;
+
+    @Column(name = "publication_time")
     private Date publicationTime;
+
+    @Column(name = "status")
     private boolean status;
 }
