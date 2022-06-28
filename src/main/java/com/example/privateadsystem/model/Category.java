@@ -16,8 +16,9 @@ public class Category {
     @Column(name = "id_category", nullable = false)
     private Long idCategory;
 
+    @Column(name = "category_name")
     private String categoryName;
 
-    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<SubCategory> subCategories;
+//    @OneToMany(mappedBy = "category", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+//    private Set<SubCategory> subCategories;
 }

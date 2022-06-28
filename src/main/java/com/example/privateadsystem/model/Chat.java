@@ -27,5 +27,6 @@ public class Chat {
     @OneToMany(mappedBy = "chat", fetch = FetchType.LAZY, orphanRemoval = true)
     private Set<Message> messages;
 
+    @Column(name = "name")
     private String name;
 }

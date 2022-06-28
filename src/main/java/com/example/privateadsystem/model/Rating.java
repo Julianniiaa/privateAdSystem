@@ -24,6 +24,9 @@ public class Rating {
     @JoinColumn(name = "id_user_to")
     private User userTo;
 
+    @Column(name = "value")
     private int value;
+
+    @Column(name = "date_rating")
     private Date dateRating;
 }

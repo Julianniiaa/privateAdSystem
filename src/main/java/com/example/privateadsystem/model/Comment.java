@@ -24,6 +24,9 @@ public class Comment {
     @JoinColumn(name = "id_post")
     private Post post;
 
+    @Column(name = "text")
     private String text;
+
+    @Column(name = "publication_time")
     private Date publicationTime;
 }
