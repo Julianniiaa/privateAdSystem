@@ -15,7 +15,6 @@ public class SubCategoryServiceImpl implements SubCategoryService {
     private final SubCategoryRepository subCategoryRepository;
     SubCategoryServiceImpl(CategoryRepository categoryRepository,
                            SubCategoryRepository subCategoryRepository) {
-        super();
         this.subCategoryRepository = subCategoryRepository;
     }
 

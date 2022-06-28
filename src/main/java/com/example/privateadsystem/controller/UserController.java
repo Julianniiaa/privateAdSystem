@@ -9,26 +9,23 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 
-@Controller
+@RestController
 @RequestMapping("/users")
 public class UserController {
 
     private final UserService userService;
     public UserController(UserService userService) {
-        super();
         this.userService = userService;
     }
 
     @PostMapping()
-    public String createUser(@RequestBody UserDto userDto) throws ParseException {
-        userService.saveUser(userDto);
-        return "redirect:";
-
+    public User createUser(@RequestBody UserDto userDto) throws ParseException {
+        return userService.saveUser(userDto);
     }
 
     @DeleteMapping("/{id}")
     public String deleteMapping(@PathVariable(value = "id") long id) {
         this.userService.deleteUser(id);
-        return "redirect:";
+        return "redirect:/users";
     }
 }

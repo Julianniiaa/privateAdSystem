@@ -18,7 +18,6 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     public UserServiceImpl(UserRepository userRepository) {
-        super();
         this.userRepository = userRepository;
     }
 
@@ -38,14 +37,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(long id) {
-        Optional<User> optional = userRepository.findById(id);
-        User user;
-        if (optional.isPresent()) {
-            user = optional.get();
-        } else {
-            throw new RuntimeException(" User not found for id :: " + id);
-        }
-        return user;
+        return userRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found for id::" + id));
     }
 
     @Override

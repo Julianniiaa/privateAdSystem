@@ -14,7 +14,6 @@ public class CategoryController {
 
     CategoryService categoryService;
     CategoryController(CategoryService categoryService) {
-        super();
         this.categoryService = categoryService;
     }
 

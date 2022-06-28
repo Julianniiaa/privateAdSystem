@@ -1,5 +1,7 @@
 package com.example.privateadsystem.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +11,8 @@ import java.util.Set;
 @Entity
 @Table(name = "chat")
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Data
 public class Chat {
     @Id

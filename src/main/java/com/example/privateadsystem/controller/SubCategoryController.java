@@ -16,7 +16,6 @@ public class SubCategoryController {
     SubCategoryService subCategoryService;
     SubCategoryController(CategoryService categoryService,
                           SubCategoryService subCategoryService) {
-        super();
         this.categoryService = categoryService;
         this.subCategoryService = subCategoryService;
     }

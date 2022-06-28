@@ -1,14 +1,19 @@
 package com.example.privateadsystem.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "rating")
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Data
 public class Rating {
     @Id
@@ -28,5 +33,5 @@ public class Rating {
     private int value;
 
     @Column(name = "date_rating")
-    private Date dateRating;
+    private LocalDateTime dateRating;
 }

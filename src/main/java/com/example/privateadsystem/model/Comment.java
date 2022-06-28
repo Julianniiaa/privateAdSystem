@@ -1,14 +1,19 @@
 package com.example.privateadsystem.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name="comment")
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Data
 public class Comment {
     @Id
@@ -28,5 +33,5 @@ public class Comment {
     private String text;
 
     @Column(name = "publication_time")
-    private Date publicationTime;
+    private LocalDateTime publicationTime;
 }

@@ -12,7 +12,9 @@ import java.text.ParseException;
 public class Main {
 
     public static void main(String[] args) throws ParseException {
-        Tests tests = new Tests();
-        tests.createUser();
+//        Tests tests = new Tests();
+//        tests.createUser();
+        double a = 4.2/2;
+        System.out.println(a);
     }
 }

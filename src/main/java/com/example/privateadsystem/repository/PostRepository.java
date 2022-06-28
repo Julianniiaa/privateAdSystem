@@ -12,27 +12,29 @@ import java.util.List;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long> {
     @Query("SELECT p FROM Post p where p.statusSold = false order by p.statusVip desc," +
-            "p.publicationDate desc")
+            "p.user.avgRating desc, p.publicationDate desc")
     List<Post> findPostsByStatusSoldAndStatusVipDescAndPublicationDateDesc();
     @Query("SELECT p FROM Post p where p.statusSold = false order by p.statusVip desc," +
-            "p.publicationDate asc")
+            "p.user.avgRating desc, p.publicationDate asc")
     List<Post> findPostsByStatusSoldAndStatusVipDescAndPublicationDateAsc();
     @Query("SELECT p FROM Post p where p.statusSold = false order by p.statusVip desc," +
-            "p.price asc")
+            "p.user.avgRating desc, p.price asc")
     List<Post> findPostsByStatusSoldAndStatusVipDescAndPriceAsc();
     @Query("SELECT p FROM Post p where p.statusSold = false order by p.statusVip desc," +
-            "p.price desc")
+            "p.user.avgRating desc, p.price desc")
     List<Post> findPostsByStatusSoldAndStatusVipDescAndPriceDesc();
     @Query("SELECT p FROM Post p where p.statusSold = false order by p.statusVip desc," +
-            "p.title asc")
+            "p.user.avgRating desc, p.title asc")
     List<Post> findPostsByStatusSoldAndStatusVipDescAndTitleAsc();
     @Query("SELECT p FROM Post p where p.statusSold = false order by p.statusVip desc," +
-            "p.title desc")
+            "p.user.avgRating desc, p.title desc")
     List<Post> findPostsByStatusSoldAndStatusVipDescAndTitleDesc();
     List<Post> findPostsByUser_IdUser(long id);
     @Query("SELECT p FROM Post p where p.subCategory.category.idCategory = (:id)" +
-            "and p.statusSold = false order by p.statusVip desc")
+            "and p.statusSold = false order by p.statusVip desc, p.user.avgRating desc")
     List<Post> findPostsBySubCategory_Category_IdCategory(@Param("id") long id);
+    @Query("SELECT p FROM Post p where p.subCategory.idSubCategory = (:id)" +
+            "and p.statusSold = false order by p.statusVip desc, p.user.avgRating desc")
     List<Post> findPostsBySubCategory_IdSubCategoryAndStatusSoldFalse(long id);
-    Post findById(long id);
+    Post findByIdPost(long id);
 }
