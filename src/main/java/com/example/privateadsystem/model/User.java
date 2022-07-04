@@ -42,9 +42,6 @@ public class User/* implements UserDetails*/ {
     @Column(name = "avg_rating")
     private double avgRating;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, orphanRemoval = true)
-    private Set<Message> messages;
-
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
             name = "user_role",

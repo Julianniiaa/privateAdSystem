@@ -12,7 +12,6 @@ public class RegionServiceImpl implements RegionService {
 
     private final RegionRepository regionRepository;
     public RegionServiceImpl(RegionRepository regionRepository) {
-        super();
         this.regionRepository = regionRepository;
     }
 
