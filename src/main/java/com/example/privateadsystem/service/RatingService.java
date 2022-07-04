@@ -1,7 +1,7 @@
 package com.example.privateadsystem.service;
 
 import com.example.privateadsystem.model.Rating;
-import com.example.privateadsystem.web.dto.RatingDto;
+import com.example.privateadsystem.model.dto.RatingDto;
 
 import java.util.List;
 
@@ -12,5 +12,5 @@ public interface RatingService {
     List<Rating> getRatingIdUserTo(long idUserTo);
     List<Rating> getAllRatings();
     Rating updateRating(long id, RatingDto ratingDto);
-    void deleteRating(long id);
+    void deleteRating(long id, long idUserTo);
 }

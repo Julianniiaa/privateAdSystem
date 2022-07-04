@@ -20,16 +20,13 @@ public class Chat {
     @Column(name = "id_chat", nullable = false)
     private Long idChat;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_user_from")
     private User userFrom;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_user_to")
     private User userTo;
-
-    @OneToMany(mappedBy = "chat", fetch = FetchType.LAZY, orphanRemoval = true)
-    private Set<Message> messages;
 
     @Column(name = "name")
     private String name;

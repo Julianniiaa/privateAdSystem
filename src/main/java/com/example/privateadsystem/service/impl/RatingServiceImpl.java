@@ -5,7 +5,7 @@ import com.example.privateadsystem.model.User;
 import com.example.privateadsystem.repository.RatingRepository;
 import com.example.privateadsystem.repository.UserRepository;
 import com.example.privateadsystem.service.RatingService;
-import com.example.privateadsystem.web.dto.RatingDto;
+import com.example.privateadsystem.model.dto.RatingDto;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -85,8 +85,9 @@ public class RatingServiceImpl implements RatingService {
     }
 
     @Override
-    public void deleteRating(long id) {
-        Rating ratingFound = ratingRepository.findByIdRating(id);
+    public void deleteRating(long id, long idUserTo) {
+        Rating ratingFound = ratingRepository.findRatingByUserFrom_IdUserAndUserTo_IdUser(id, idUserTo);
+        ratingRepository.deleteById(ratingFound.getIdRating());
         setAvgRating(ratingFound.getUserTo(), ratingFound.getUserTo().getIdUser());
     }
 }

@@ -1,16 +1,17 @@
 package com.example.privateadsystem.service.impl;
 
 import com.example.privateadsystem.model.Comment;
-import com.example.privateadsystem.model.Post;
 import com.example.privateadsystem.repository.CommentRepository;
 import com.example.privateadsystem.repository.PostRepository;
 import com.example.privateadsystem.repository.UserRepository;
 import com.example.privateadsystem.service.CommentService;
-import com.example.privateadsystem.web.dto.CommentDto;
+import com.example.privateadsystem.model.dto.CommentDto;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Service
 public class CommentServiceImpl implements CommentService {
 
     private final CommentRepository commentRepository;

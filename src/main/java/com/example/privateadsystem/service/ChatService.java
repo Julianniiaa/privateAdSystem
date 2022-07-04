@@ -1,7 +1,7 @@
 package com.example.privateadsystem.service;
 
 import com.example.privateadsystem.model.Chat;
-import com.example.privateadsystem.web.dto.ChatDto;
+import com.example.privateadsystem.model.dto.ChatDto;
 
 import java.util.List;
 

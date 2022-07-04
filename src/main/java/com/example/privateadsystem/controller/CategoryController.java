@@ -2,8 +2,8 @@ package com.example.privateadsystem.controller;
 
 import com.example.privateadsystem.model.Category;
 import com.example.privateadsystem.service.CategoryService;
-import com.example.privateadsystem.web.dto.UserDto;
-import org.springframework.stereotype.Controller;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +12,8 @@ import java.util.List;
 @RequestMapping("/categories")
 public class CategoryController {
 
+    private static final Logger logger = LoggerFactory.getLogger(CategoryController.class);
+
     CategoryService categoryService;
     CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
@@ -19,25 +21,26 @@ public class CategoryController {
 
     @GetMapping()
     public List<Category> getAllCategories() {
+        logger.info("Get all categories");
         return categoryService.findAllCategories();
     }
 
     @PostMapping()
-    public String createCategory(@RequestBody Category category) {
-        categoryService.saveCategory(category);
-        return "redirect:/categories";
+    public Category createCategory(@RequestBody Category category) {
+        logger.info("Create category {}", category);
+        return categoryService.saveCategory(category);
     }
 
     @DeleteMapping("/{id}")
-    public String deleteCategory(@PathVariable(name = "id") long id) {
+    public void deleteCategory(@PathVariable(name = "id") long id) {
+        logger.info("Delete category {}", id);
         categoryService.deleteCategory(id);
-        return "redirect:/categories";
     }
 
     @PostMapping("/{id}")
-    public String updateCategory(@PathVariable(name = "id") long id,
+    public Category updateCategory(@PathVariable(name = "id") long id,
                                  @RequestBody Category category) {
-        categoryService.updateCategory(id, category);
-        return "redirect:/categories";
+        logger.info("Update category {}, {}", id, category);
+        return categoryService.updateCategory(id, category);
     }
 }

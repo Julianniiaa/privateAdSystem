@@ -1,10 +1,10 @@
 package com.example.privateadsystem.controller;
 
-import com.example.privateadsystem.model.Category;
 import com.example.privateadsystem.model.SubCategory;
 import com.example.privateadsystem.service.CategoryService;
 import com.example.privateadsystem.service.SubCategoryService;
-import org.springframework.data.repository.query.Param;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +12,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/subCategories")
 public class SubCategoryController {
+
+    private static final Logger logger = LoggerFactory.getLogger(SubCategoryController.class);
+
     CategoryService categoryService;
     SubCategoryService subCategoryService;
     SubCategoryController(CategoryService categoryService,
@@ -21,31 +24,27 @@ public class SubCategoryController {
     }
 
     @GetMapping()
-    public List<SubCategory> getAllCategories() {
+    public List<SubCategory> getAllSubCategories() {
+        logger.info("Get all subCategories");
         return subCategoryService.getAllSubCategories();
     }
 
-    @GetMapping("/{id}")
-    public List<SubCategory> getAllSubCategoriesByCategory(@PathVariable(name = "id") long id) {
-        return subCategoryService.getSubCategoriesByCategory(id);
-    }
-
     @PostMapping()
-    public String createSubCategory(@RequestBody SubCategory subCategory) {
-        subCategoryService.saveSubCategory(subCategory);
-        return "redirect:/subCategories";
+    public SubCategory createSubCategory(@RequestBody SubCategory subCategory) {
+        logger.info("Create subCategory {}", subCategory);
+        return subCategoryService.saveSubCategory(subCategory);
     }
 
     @DeleteMapping("/{id}")
-    public String deleteSubCategory(@PathVariable(name = "id") long id) {
+    public void deleteSubCategory(@PathVariable(name = "id") long id) {
+        logger.info("Delete SubCategory {}", id);
         subCategoryService.deleteSubCategory(id);
-        return "redirect:/subCategories";
     }
 
     @PostMapping("/{id}")
-    public String updateSubCategory(@PathVariable(name = "id") long id,
+    public SubCategory updateSubCategory(@PathVariable(name = "id") long id,
                                  @RequestBody SubCategory subCategory) {
-        subCategoryService.updateSubCategory(id, subCategory);
-        return "redirect:/subCategories";
+        logger.info("Update subCategory {}, {}", id, subCategory);
+        return subCategoryService.updateSubCategory(id, subCategory);
     }
 }

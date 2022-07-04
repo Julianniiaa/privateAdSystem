@@ -5,11 +5,13 @@ import com.example.privateadsystem.repository.ChatRepository;
 import com.example.privateadsystem.repository.MessageRepository;
 import com.example.privateadsystem.repository.UserRepository;
 import com.example.privateadsystem.service.MessageService;
-import com.example.privateadsystem.web.dto.MessageDto;
+import com.example.privateadsystem.model.dto.MessageDto;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Service
 public class MessageServiceImpl implements MessageService {
 
     private final MessageRepository messageRepository;

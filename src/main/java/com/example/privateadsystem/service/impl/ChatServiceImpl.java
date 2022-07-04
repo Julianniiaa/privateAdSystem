@@ -5,7 +5,7 @@ import com.example.privateadsystem.model.User;
 import com.example.privateadsystem.repository.ChatRepository;
 import com.example.privateadsystem.repository.UserRepository;
 import com.example.privateadsystem.service.ChatService;
-import com.example.privateadsystem.web.dto.ChatDto;
+import com.example.privateadsystem.model.dto.ChatDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,9 +22,11 @@ public class ChatServiceImpl implements ChatService {
     }
     @Override
     public Chat saveChat(ChatDto chatDto) {
-        Chat chatFound = chatRepository.findChatByUserFrom_IdUserAndUserTo_IdUser(
+        Chat chatFoundFrom = chatRepository.findChatByUserFrom_IdUserAndUserTo_IdUser(
                 chatDto.getIdUserFrom(), chatDto.getIdUserTo());
-        if (chatFound == null) {
+        Chat chatFoundTo = chatRepository.findChatByUserFrom_IdUserAndUserTo_IdUser(
+                chatDto.getIdUserTo(), chatDto.getIdUserFrom());
+        if (chatFoundTo == null && chatFoundFrom == null) {
             User userFrom = userRepository.findByIdUser(chatDto.getIdUserFrom());
             User userTo = userRepository.findByIdUser(chatDto.getIdUserTo());
             Chat chat = Chat.builder()
@@ -34,14 +36,12 @@ public class ChatServiceImpl implements ChatService {
                     .build();
             return chatRepository.save(chat);
         }
-        return chatFound;
+        return chatFoundFrom != null ? chatFoundFrom : chatFoundTo;
     }
 
     @Override
     public List<Chat> getChatsByIdUserFromAndIdUserTo(long idUser) {
-        List<Chat> chats = chatRepository.findChatsByUserFrom_IdUserOrUserTo_IdUser(idUser, idUser);
-//        chats.addAll(chatRepository.findChatsByUserTo_IdUser(idUser));
-        return chats;
+        return chatRepository.findChatsByUserFrom_IdUserOrUserTo_IdUser(idUser, idUser);
     }
 
     @Override

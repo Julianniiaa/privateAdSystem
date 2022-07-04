@@ -1,7 +1,7 @@
 package com.example.privateadsystem.service;
 
 import com.example.privateadsystem.model.Comment;
-import com.example.privateadsystem.web.dto.CommentDto;
+import com.example.privateadsystem.model.dto.CommentDto;
 
 import java.util.List;
 

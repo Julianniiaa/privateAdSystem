@@ -1,12 +1,16 @@
 package com.example.privateadsystem.service.impl;
 
+import com.example.privateadsystem.exception.DataBaseException;
+import com.example.privateadsystem.exception.NotEntityException;
 import com.example.privateadsystem.model.Post;
 import com.example.privateadsystem.repository.PostRepository;
 import com.example.privateadsystem.repository.RegionRepository;
 import com.example.privateadsystem.repository.SubCategoryRepository;
 import com.example.privateadsystem.repository.UserRepository;
 import com.example.privateadsystem.service.PostService;
-import com.example.privateadsystem.web.dto.PostDto;
+import com.example.privateadsystem.model.dto.PostDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -14,6 +18,8 @@ import java.util.List;
 
 @Service
 public class PostServiceImpl implements PostService {
+
+    private static final Logger logger = LoggerFactory.getLogger(PostService.class);
 
     private final PostRepository postRepository;
     private final RegionRepository regionRepository;
@@ -111,9 +117,9 @@ public class PostServiceImpl implements PostService {
         try {
             postRepository.deleteById(id);
         }
-        catch (Exception e) {
-            System.out.println("Cannot delete post");
-            e.toString();
+        catch (NotEntityException e) {
+            logger.info("Cannot delete this post {}", id);
+            throw new NotEntityException("Cannot delete this post");
         }
     }
 }

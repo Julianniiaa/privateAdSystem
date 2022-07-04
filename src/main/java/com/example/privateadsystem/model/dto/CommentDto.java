@@ -1,4 +1,4 @@
-package com.example.privateadsystem.web.dto;
+package com.example.privateadsystem.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,11 +9,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Data
-public class FavoriteDto {
+public class CommentDto {
 
-    private Long idFavorite;
+    private Long idComment;
 
-    private Long idPost;
+    private String text;
+
+    private  Long idPost;
 
     private Long idUser;
 }

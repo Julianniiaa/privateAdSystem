@@ -21,11 +21,11 @@ public class Message {
     @Column(name = "id_message", nullable = false)
     private Long idMessage;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_user")
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_chat")
     private Chat chat;
 

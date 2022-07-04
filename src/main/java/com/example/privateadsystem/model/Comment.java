@@ -21,11 +21,11 @@ public class Comment {
     @Column(name = "id_comment", nullable = false)
     private Long idComment;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_user")
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_post")
     private Post post;
 

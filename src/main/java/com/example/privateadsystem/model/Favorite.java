@@ -19,11 +19,11 @@ public class Favorite {
     @Column(name = "id_favorite", nullable = false)
     private Long idFavorite;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_user")
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "id_post")
     private Post post;
 }

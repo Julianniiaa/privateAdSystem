@@ -1,7 +1,7 @@
 package com.example.privateadsystem.service;
 
 import com.example.privateadsystem.model.Favorite;
-import com.example.privateadsystem.web.dto.FavoriteDto;
+import com.example.privateadsystem.model.dto.FavoriteDto;
 
 import java.util.List;
 

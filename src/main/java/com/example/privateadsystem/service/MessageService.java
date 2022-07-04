@@ -1,7 +1,7 @@
 package com.example.privateadsystem.service;
 
 import com.example.privateadsystem.model.Message;
-import com.example.privateadsystem.web.dto.MessageDto;
+import com.example.privateadsystem.model.dto.MessageDto;
 
 import java.util.List;
 
