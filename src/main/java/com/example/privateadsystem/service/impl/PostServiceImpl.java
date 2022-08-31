@@ -1,21 +1,25 @@
 package com.example.privateadsystem.service.impl;
 
+import com.example.privateadsystem.exception.DataBaseException;
+import com.example.privateadsystem.exception.NotEntityException;
 import com.example.privateadsystem.model.Post;
 import com.example.privateadsystem.repository.PostRepository;
 import com.example.privateadsystem.repository.RegionRepository;
 import com.example.privateadsystem.repository.SubCategoryRepository;
 import com.example.privateadsystem.repository.UserRepository;
 import com.example.privateadsystem.service.PostService;
-import com.example.privateadsystem.web.dto.PostDto;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.privateadsystem.model.dto.PostDto;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
 public class PostServiceImpl implements PostService {
+
+    private static final Logger logger = LoggerFactory.getLogger(PostService.class);
 
     private final PostRepository postRepository;
     private final RegionRepository regionRepository;
@@ -25,7 +29,6 @@ public class PostServiceImpl implements PostService {
                            RegionRepository regionRepository,
                            UserRepository userRepository,
                            SubCategoryRepository subCategoryRepository) {
-        super();
         this.postRepository = postRepository;
         this.regionRepository = regionRepository;
         this.userRepository = userRepository;
@@ -94,19 +97,19 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Post getPost(long id) {
-        return postRepository.findById(id);
+        return postRepository.findByIdPost(id);
     }
 
     @Override
     public Post updatePost(long id, PostDto postDto) {
-        Post oldPost = postRepository.findById(id);
-        oldPost.setTitle(postDto.getTitle());
-        oldPost.setDescription(postDto.getDescription());
-        oldPost.setPrice(postDto.getPrice());
-        oldPost.setStatusSold(postDto.isStatusSold());
-        oldPost.setSubCategory(subCategoryRepository.findByIdSubCategory(postDto.getIdSubCategory()));
-        oldPost.setRegion(regionRepository.findByIdRegion(postDto.getIdRegion()));
-        return postRepository.save(oldPost);
+        Post post = postRepository.findByIdPost(id);
+        post.setTitle(postDto.getTitle());
+        post.setDescription(postDto.getDescription());
+        post.setPrice(postDto.getPrice());
+        post.setStatusSold(postDto.isStatusSold());
+        post.setSubCategory(subCategoryRepository.findByIdSubCategory(postDto.getIdSubCategory()));
+        post.setRegion(regionRepository.findByIdRegion(postDto.getIdRegion()));
+        return postRepository.save(post);
     }
 
     @Override
@@ -114,9 +117,9 @@ public class PostServiceImpl implements PostService {
         try {
             postRepository.deleteById(id);
         }
-        catch (Exception e) {
-            System.out.println("Cannot delete post");
-            e.toString();
+        catch (NotEntityException e) {
+            logger.info("Cannot delete this post {}", id);
+            throw new NotEntityException("Cannot delete this post");
         }
     }
 }

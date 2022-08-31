@@ -1,4 +1,4 @@
-package com.example.privateadsystem.web.dto;
+package com.example.privateadsystem.model.dto;
 
 import com.example.privateadsystem.model.*;
 import lombok.AllArgsConstructor;

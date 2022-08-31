@@ -34,12 +34,6 @@ public class Post {
     @JoinColumn(name = "id_region")
     private Region region;
 
-    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, orphanRemoval = true)
-    private Set<Comment> comments;
-
-    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, orphanRemoval = true)
-    private Set<Favorite> favorites;
-
     @Column(name = "title")
     private String title;
 
